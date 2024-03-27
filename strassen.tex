@@ -19,13 +19,21 @@
 \begin{document}
 \maketitle
 
-\section{Section 1:}
+\section{Section 1: Analytical Analysis}
+
+The standard algorithm simply multiplies the two matrices using arithmetic operations. It calculates a total of $n^2$ entries, and to calculate each entry, it does $n$ separate multiplications of pairs of elements, and then sums them all up with $n-1$ additions. Thus, each element takes $n+(n-1)=2n-1$ time to calculate (based on the assumption that all arithmetic operations run in $O(1)$ time), so the amount of time to calculate the entire matrix product is $T(n)=n^2(2n-1)$.
+
+\medskip
+
+We learned in lecture that the runtime for Strassen's algorithm is $T(n)=7T(n/2) + \Theta(n/2)$. When we examine the algorithm we find that the exact value is $T(n)=7T(n/2) + 18((n/2)^2)$, since there are 18 places where the algorithm adds or subtracts matrices, and all of these matrices are of size $(n/2)^2$. However, there is one more technicality we must account for to obtain the correct runtime for Strassen's algorithm. Namely, if $n$ is odd, we cannot simply split it into matrices of size $(n/2)^2$. Instead, we can pad both matrices with an extra row and an extra column of zeroes (which takes constant runtime), so that the matrices are of even length. Then, we can write our equation in terms of $(n+1)/2$ instead of $n/2$: $T(n)=7T((n+1)/2) + 18(((n+1)/2)^2)$.
+
+\medskip
+
+In summary, we have the following results: $$T(n)=7T(n/2) + 18((n/2)^2)$$ when $n$ is even, and $$T(n)=7T((n+1)/2) + 18(((n+1)/2)^2)$$ when $n$ is odd. Let us first examine the even case. At the turning point, we will be using the conventional algorithm to calculate our matrix products of size $n/2$
+
+\section{Section 2: Experimental Analysis}
 
 
-
-\section{Section 2:}
-
-
-\section{Section 3:}
+\section{Section 3: Triangle in Random Graphs}
 
 \end{document}
