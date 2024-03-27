@@ -42,7 +42,13 @@ Thus, in the even case, $n=15$. (Note that $n=0$ also satisfies our equation, bu
 
 Now we will examine the odd case. We start by once again using the standard algorithm runtime on our subcase, but this time we plug $\frac{n+1}{2}$ into this algorithm to get $$T\left(\frac{n+1}{2}\right) = \left(\frac{n+1}{2}\right)^2*\left(2\left(\frac{n+1}{2}\right)-1\right).$$
 
-Thus, we have that $$T(n)=7T\left(\frac{n+1}{2}\right) + 18\left(\frac{n+1}{2}\right)^2$$ $$= 7\left(\left(\frac{n+1}{2}\right)^2*\left(2\left(\frac{n+1}{2}\right)-1\right)\right) + 18\left(\frac{n+1}{2}\right)^2$$ $$=\frac{7}{4}(n+1)^2(n) + \frac{18}{4}((n+1)^2)$$
+Thus, we have that $$T(n)=7T\left(\frac{n+1}{2}\right) + 18\left(\frac{n+1}{2}\right)^2$$ $$= 7\left(\left(\frac{n+1}{2}\right)^2*\left(2\left(\frac{n+1}{2}\right)-1\right)\right) + 18\left(\frac{n+1}{2}\right)^2$$ $$=\frac{7}{4}(n+1)^2(n) + \frac{18}{4}((n+1)^2)$$ $$= \left(\frac{7}{4}n +\frac{18}{4} \right)(n^2+2n+1)$$ $$= \frac{7}{4}n^3 + \frac{14}{4}n^2 + \frac{7}{4}n +\frac{18}{4}n^2 + \frac{36}{4}n + \frac{18}{4}$$ $$=\frac{7}{4}n^3 + 8n^2 + \frac{43}{4}n + \frac{9}{2}.$$
+
+Once again, we remember that at the turning point, running Strassen's algorithm and running the conventional algorithm should take approximately the same amount of time. Thus, $$T(n)=n^2(2n-1).$$
+
+This implies that $$n^2(2n-1) = T(n) = \frac{7}{4}n^3 + 8n^2 + \frac{43}{4}n + \frac{9}{2}$$ $$\implies \frac{7}{4}n^3 + 8n^2 + \frac{43}{4}n + \frac{9}{2} - n^2(2n-1) = 0$$ $$ \implies \frac{7}{4}n^3 + 8n^2 + \frac{43}{4}n + \frac{9}{2} - n^2(2n-1) =  \frac{7}{4}n^3 + 8n^2 + \frac{43}{4}n + \frac{9}{2} - 2n^3 + n^2$$ $$= -\frac{1}{4}n^3 + 9n^2 + \frac{43}{4}n + \frac{9}{2}$$ $$= -\frac{1}{4}(n^3 - 36n^2 - 43n - 18) = 0.$$
+
+When we plug this function into Desmos, we find that the value of $n$ that satisfies the equation is approximately $n=37$. Thus, our final result is that for the even case, the turning point is at $n=15$, and for the odd case, the turning point is at approximately $n=37$.
 
 \section{Section 2: Experimental Analysis}
 
