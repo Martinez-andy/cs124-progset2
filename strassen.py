@@ -84,14 +84,9 @@ def strasens(m1, m2):
     p6 = strasens((B - D), (G + H))
     p7 = strasens((C - A), (E + F))
     
-    return np.vstack(
-        np.hstack(
-        -p2 + p4 + p5 + p6,
-        p1 + p2
-    ), 
-        botRes = np.hstack(
-        p3 + p4,
-        p1 - p3 + p5 + p7
+    return np.vstack((
+        np.hstack((-p2 + p4 + p5 + p6, p1 + p2)),
+        np.hstack((p3 + p4, p1 - p3 + p5 + p7))
     ))
 
 
