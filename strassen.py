@@ -11,7 +11,7 @@ import numpy as np
 nOpt = 1
 
 
-# Adds row and column of zeros
+# Adds row and column of zeros, needed for odd matrices
 def addZeros(m):
     row_of_zeros = np.zeros((1, m.shape[1]))  # Create a row of zeros with the same number of columns
     updated_matrix = np.vstack((m, row_of_zeros))
@@ -49,11 +49,13 @@ def makeQuads(m):
     mid_row = n // 2
     mid_col = n // 2
     
+    # Create quadrants
     uLeft = m[:mid_row, :mid_col]
     uRight = m[:mid_row, mid_col:]
     lLeft = m[mid_row:, :mid_col]
     lRight = m[mid_row:, mid_col:]
 
+    # Return quadrants
     return uLeft, uRight, lLeft, lRight
 
 
@@ -71,11 +73,11 @@ def strasens(m1, m2):
         m2 = addZeros(m2)
         n += 1
     
-    # Otherwise, strasens algorithm
-    
+    # Make quadrants
     A, B, C, D = makeQuads(m1)
     E, F, G, H = makeQuads(m2)
     
+    # Calculate p values from lecture slides
     p1 = strasens(A, (F-H))
     p2 = strasens((A + B), H)
     p3 = strasens((C + B), E)
@@ -84,6 +86,7 @@ def strasens(m1, m2):
     p6 = strasens((B - D), (G + H))
     p7 = strasens((C - A), (E + F))
     
+    # Merge sub problems
     return np.vstack((
         np.hstack((-p2 + p4 + p5 + p6, p1 + p2)),
         np.hstack((p3 + p4, p1 - p3 + p5 + p7))
