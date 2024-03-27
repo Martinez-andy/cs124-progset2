@@ -25,8 +25,6 @@ def addZeros(m):
 
 # Normal matrix multiplication
 def matMult(m1, m2):
-    m = np.matrix()
-    
     # Initialize result matrix with appropriate dimensions
     result = np.zeros((m1.shape[0], m2.shape[1]))
 
