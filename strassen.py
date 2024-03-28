@@ -9,7 +9,7 @@ import sys
 
 
 # Optimal n values
-nOpt = 10
+nOpt = 1
 
 
 # Adds row and column of zeros, needed for odd matrices
@@ -88,22 +88,15 @@ def strasens(m1, m2):
     p7 = strasens((C - A), (E + F))
     
     # Merge sub problems
-    m = np.vstack((
+    return np.vstack((
         np.hstack((-p2 + p4 + p5 + p6, p1 + p2)),
         np.hstack((p3 + p4, p1 - p3 + p5 + p7))
     ))
     
-    
-    # Print out diagonals for auto grader
-    for i in range(len(m)):
-        print(m[i, i])
-    return None
-
 
 
 def getMats(d):
     # Open given file
-    print(sys.argv[3])
     with open(sys.argv[3], "r") as file:  
         ms = [[], []]
         
@@ -115,9 +108,6 @@ def getMats(d):
                for k in range(d):
                    # Add the new number entry into slot
                    ms[i][-1].append(int(file.readline()))         
-        
-        print("Matrix 1 size:", len(ms[0]), "x", len(ms[0][0]))
-        print("Matrix 2 size:", len(ms[1]), "x", len(ms[1][0]))
         
         return np.matrix(ms[0]), np.matrix(ms[1]) 
 
