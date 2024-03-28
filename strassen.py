@@ -9,7 +9,7 @@ import sys
 
 
 # Optimal n values
-nOpt = 1
+nOpt = 10
 
 
 # Adds row and column of zeros, needed for odd matrices
@@ -108,7 +108,7 @@ def getMats():
         
         # Iterate over ms list
         for i in range(2):
-           for j in range(sys.argv[2]):
+           for _ in range(sys.argv[2]):
                # Add a new row
                ms[i].append([])
                for k in range(sys.argv[2]):
