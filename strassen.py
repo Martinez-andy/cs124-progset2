@@ -116,6 +116,9 @@ def getMats(d):
                    # Add the new number entry into slot
                    ms[i][-1].append(int(file.readline()))         
         
+        print("Matrix 1 size:", len(ms[0]), "x", len(ms[0][0]))
+        print("Matrix 2 size:", len(ms[1]), "x", len(ms[1][0]))
+        
         return np.matrix(ms[0]), np.matrix(ms[1]) 
 
 def main():
