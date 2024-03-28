@@ -101,30 +101,35 @@ def strasens(m1, m2):
 
 
 
-def getMats():
+def getMats(d):
     # Open given file
+    print(sys.argv[3])
     with open(sys.argv[3], "r") as file:  
         ms = [[], []]
         
         # Iterate over ms list
         for i in range(2):
-           for _ in range(sys.argv[2]):
+           for _ in range(d):
                # Add a new row
                ms[i].append([])
-               for k in range(sys.argv[2]):
+               for k in range(d):
                    # Add the new number entry into slot
                    ms[i][-1].append(int(file.readline()))         
         
         return np.matrix(ms[0]), np.matrix(ms[1]) 
 
 def main():
+    # Get dimensions of matrices
+    d = int(sys.argv[2])
+    
     # Turn input file into matrices
-    m1, m2 = getMats()
+    m1, m2 = getMats(d)
 
     # Multiply both matrices
     m = strasens(m1, m2)
     
-    for i in range(sys.argv[2]):
+    for i in range(d):
         print(m[i, i])
 
+main()
 # Part 3 - TBD
