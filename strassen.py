@@ -14,11 +14,12 @@ nOpt = 1
 
 # Adds row and column of zeros, needed for odd matrices
 def addZeros(m):
+
     row_of_zeros = np.zeros((1, m.shape[1]))  # Create a row of zeros with the same number of columns
     updated_matrix = np.vstack((m, row_of_zeros))
 
     # Add a column of zeros on the right
-    column_of_zeros = np.zeros((m.shape[0], 1))  # Create a column of zeros with the same number of rows
+    column_of_zeros = np.zeros((updated_matrix.shape[0], 1))  # Create a column of zeros with the same number of rows
     updated_matrix = np.hstack((updated_matrix, column_of_zeros))
 
     return updated_matrix
