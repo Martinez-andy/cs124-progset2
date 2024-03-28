@@ -123,7 +123,7 @@ def main():
     m = strasens(m1, m2)
     
     for i in range(d):
-        print(m[i, i])
+        print(int(m[i, i]))
 
 main()
 # Part 3 - TBD
