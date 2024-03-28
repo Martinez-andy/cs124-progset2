@@ -87,11 +87,16 @@ def strasens(m1, m2):
     p7 = strasens((C - A), (E + F))
     
     # Merge sub problems
-    return np.vstack((
+    m = np.vstack((
         np.hstack((-p2 + p4 + p5 + p6, p1 + p2)),
         np.hstack((p3 + p4, p1 - p3 + p5 + p7))
     ))
-
+    
+    
+    # Print out diagonals for auto grader
+    for i in range(len(m)):
+        print(m[i, i])
+    return None
 
 
 # Part 3 - TBD
