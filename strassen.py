@@ -9,7 +9,7 @@ import sys
 
 
 # Optimal n values
-nOpt = 1
+nOpt = 20
 
 
 # Adds row and column of zeros, needed for odd matrices
