@@ -5,6 +5,7 @@
 
 # Part 2 - Andy Martinez
 import numpy as np
+import sys
 
 
 # Optimal n values
@@ -98,5 +99,32 @@ def strasens(m1, m2):
         print(m[i, i])
     return None
 
+
+
+def getMats():
+    # Open given file
+    with open(sys.argv[3], "r") as file:  
+        ms = [[], []]
+        
+        # Iterate over ms list
+        for i in range(2):
+           for j in range(sys.argv[2]):
+               # Add a new row
+               ms[i].append([])
+               for k in range(sys.argv[2]):
+                   # Add the new number entry into slot
+                   ms[i][-1].append(int(file.readline()))         
+        
+        return np.matrix(ms[0]), np.matrix(ms[1]) 
+
+def main():
+    # Turn input file into matrices
+    m1, m2 = getMats()
+
+    # Multiply both matrices
+    m = strasens(m1, m2)
+    
+    for i in range(sys.argv[2]):
+        print(m[i, i])
 
 # Part 3 - TBD
