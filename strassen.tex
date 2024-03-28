@@ -48,7 +48,11 @@ Once again, we remember that at the turning point, running Strassen's algorithm 
 
 This implies that $$n^2(2n-1) = T(n) = \frac{7}{4}n^3 + 8n^2 + \frac{43}{4}n + \frac{9}{2}$$ $$\implies \frac{7}{4}n^3 + 8n^2 + \frac{43}{4}n + \frac{9}{2} - n^2(2n-1) = 0$$ $$ \implies \frac{7}{4}n^3 + 8n^2 + \frac{43}{4}n + \frac{9}{2} - n^2(2n-1) =  \frac{7}{4}n^3 + 8n^2 + \frac{43}{4}n + \frac{9}{2} - 2n^3 + n^2$$ $$= -\frac{1}{4}n^3 + 9n^2 + \frac{43}{4}n + \frac{9}{2}$$ $$= -\frac{1}{4}(n^3 - 36n^2 - 43n - 18) = 0.$$
 
-When we plug this function into Desmos, we find that the value of $n$ that satisfies the equation is approximately $n=37$. Thus, our final result is that for the even case, the turning point is at $n=15$, and for the odd case, the turning point is at approximately $n=37$.
+When we plug this function into Desmos, we find that the value of $n$ that satisfies the equation is approximately $n=37$, as shown in the image below. (Note that this image graphs our expression without the constant of $-\frac{1}{4}$, since omitting this constant does not change where the zeroes are.) 
+
+\includegraphics[width=\linewidth]{StrassenPlot.png}
+
+Thus, our final result is that for the even case, the turning point is at $n=15$, and for the odd case, the turning point is at approximately $n=37$.
 
 \section{Section 2: Experimental Analysis}
 
