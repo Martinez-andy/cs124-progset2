@@ -58,8 +58,8 @@ def makeQuads(m):
 
     # Return quadrants
     return uLeft, uRight, lLeft, lRight
-
-
+    
+    
 # Strasen's algorithm
 def strasens(m1, m2):
     n = len(m1)
@@ -68,8 +68,10 @@ def strasens(m1, m2):
     if n <= nOpt:
         return matMult(m1, m2)
     
+    isOdd = False
     # Handle odd matrix case
     if n % 2:
+        isOdd = True
         m1 = addZeros(m1)
         m2 = addZeros(m2)
         n += 1
@@ -86,13 +88,17 @@ def strasens(m1, m2):
     p5 = strasens((A + D), (E + H))
     p6 = strasens((B - D), (G + H))
     p7 = strasens((C - A), (E + F))
-
     
-    # Merge sub problems
-    return np.vstack((
+    m = np.vstack((
         np.hstack((-p2 + p4 + p5 + p6, p1 + p2)),
         np.hstack((p3 + p4, p1 - p3 + p5 + p7))
     ))    
+    
+    if isOdd:
+        m = m[:-1, :-1]
+        
+    return m
+    
 
 def getMats(d):
     # Open given file
@@ -104,7 +110,7 @@ def getMats(d):
            for _ in range(d):
                # Add a new row
                ms[i].append([])
-               for k in range(d):
+               for _ in range(d):
                    # Add the new number entry into slot
                    ms[i][-1].append(int(file.readline()))         
         
@@ -123,6 +129,6 @@ def main():
     
     for i in range(d):
         print(int(m[i, i]))
-
+            
 main()
 # Part 3 - TBD
