@@ -21,7 +21,7 @@ def addZeros(m):
     # Add a column of zeros on the right
     column_of_zeros = np.zeros((updated_matrix.shape[0], 1))  # Create a column of zeros with the same number of rows
     updated_matrix = np.hstack((updated_matrix, column_of_zeros))
-
+    
     return updated_matrix
 
 
@@ -34,12 +34,11 @@ def matMult(m1, m2):
     for i in range(m1.shape[0]):
         # Iterate over columns of the second matrix
         for j in range(m2.shape[1]):
-            # Iterate over rows of the second matrix (or columns of the first matrix)
-            for k in range(m1.shape[1]):
-                # Update the element at position (i, j) of the result matrix
-                result[i, j] += m1[i, k] * m2[k, j]
+            # Compute the dot product of the ith row of m1 and the jth column of m2
+            result[i, j] = np.sum(m1[i, :] * m2[:, j])
 
     return result
+
 
 
 # Take a matrix as input and return 4 quadrants
@@ -82,18 +81,18 @@ def strasens(m1, m2):
     # Calculate p values from lecture slides
     p1 = strasens(A, (F-H))
     p2 = strasens((A + B), H)
-    p3 = strasens((C + B), E)
+    p3 = strasens((C + D), E)
     p4 = strasens(D, (G - E))
     p5 = strasens((A + D), (E + H))
     p6 = strasens((B - D), (G + H))
     p7 = strasens((C - A), (E + F))
+
     
     # Merge sub problems
     return np.vstack((
         np.hstack((-p2 + p4 + p5 + p6, p1 + p2)),
         np.hstack((p3 + p4, p1 - p3 + p5 + p7))
-    ))
-    
+    ))    
 
 
 def getMats(d):
@@ -112,6 +111,7 @@ def getMats(d):
         
         return np.matrix(ms[0]), np.matrix(ms[1]) 
 
+
 def main():
     # Get dimensions of matrices
     d = int(sys.argv[2])
@@ -123,7 +123,8 @@ def main():
     m = strasens(m1, m2)
     
     for i in range(d):
-        print(int(m[i, i]))
+        for j in range(d):
+            print(int(m[i, j]))
 
 main()
 # Part 3 - TBD
