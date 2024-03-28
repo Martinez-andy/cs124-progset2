@@ -94,7 +94,6 @@ def strasens(m1, m2):
         np.hstack((p3 + p4, p1 - p3 + p5 + p7))
     ))    
 
-
 def getMats(d):
     # Open given file
     with open(sys.argv[3], "r") as file:  
@@ -123,8 +122,7 @@ def main():
     m = strasens(m1, m2)
     
     for i in range(d):
-        for j in range(d):
-            print(int(m[i, j]))
+        print(int(m[i, i]))
 
 main()
 # Part 3 - TBD
