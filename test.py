@@ -1,9 +1,11 @@
 # test_strasen.py
 import sys
-from strassen import main  # Import your strassen.py module
+  # Import your strassen.py module
 
-def findOptN():
-    sys.argv = ["strassen.py", "0", "2", "test1.txt"]
-    
-    print(sys.argv)
-    main()
+def main():
+    with open("test7.txt", "w") as file:
+        for _ in range(2):
+            for i in range(1, 101):
+                file.write(f"{i}\n")
+                
+main()
