@@ -10,7 +10,6 @@ import sys
 # Optimal n values
 nOpt = 9
 
-
 # Adds row and column of zeros, needed for odd matrices
 def addZeros(m):
 
@@ -63,8 +62,6 @@ def makeQuads(m):
 # Strasen's algorithm
 def strassens(m1, m2):
     n = len(m1)
-    
-    nOpt = nOpt if sys.argv[1] == 0 else int(sys.argv[1])
     
     # Once we reach base case, do normal matrix mult
     if n <= nOpt:
