@@ -11,6 +11,7 @@ import sys
 nOpt = 37
 
 
+
 # Adds row and column of zeros, needed for odd matrices
 def addZeros(m):
 
@@ -60,7 +61,7 @@ def makeQuads(m):
     
     
 # Strasen's algorithm
-def strasens(m1, m2):
+def strassens(m1, m2):
     n = len(m1)
     
     # Once we reach base case, do normal matrix mult
@@ -80,13 +81,13 @@ def strasens(m1, m2):
     E, F, G, H = makeQuads(m2)
     
     # Calculate p values from lecture slides
-    p1 = strasens(A, (F-H))
-    p2 = strasens((A + B), H)
-    p3 = strasens((C + D), E)
-    p4 = strasens(D, (G - E))
-    p5 = strasens((A + D), (E + H))
-    p6 = strasens((B - D), (G + H))
-    p7 = strasens((C - A), (E + F))
+    p1 = strassens(A, (F-H))
+    p2 = strassens((A + B), H)
+    p3 = strassens((C + D), E)
+    p4 = strassens(D, (G - E))
+    p5 = strassens((A + D), (E + H))
+    p6 = strassens((B - D), (G + H))
+    p7 = strassens((C - A), (E + F))
     
     m = np.vstack((
         np.hstack((-p2 + p4 + p5 + p6, p1 + p2)),
@@ -124,7 +125,7 @@ def main():
     m1, m2 = getMats(d)
 
     # Multiply both matrices
-    m = strasens(m1, m2)
+    m = strassens(m1, m2)
     
     for i in range(d):
         print(int(m[i, i]))
