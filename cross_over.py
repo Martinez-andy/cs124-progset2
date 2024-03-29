@@ -8,7 +8,7 @@ import sys
 
 
 # Optimal n values
-nOpt = 1
+nOpt = 9
 
 # Adds row and column of zeros, needed for odd matrices
 def addZeros(m):
@@ -35,7 +35,6 @@ def matMult(m1, m2):
         for j in range(n):
             for k in range(n):
                 result[i, j] += m1[i, k] * m2[k, j]
-                
     return result
 
 
@@ -116,7 +115,7 @@ def getMats(d):
         return np.matrix(ms[0]), np.matrix(ms[1]) 
 
 
-def main():
+def main(s = True):
     # Get dimensions of matrices
     d = int(sys.argv[2])
     
@@ -124,10 +123,12 @@ def main():
     m1, m2 = getMats(d)
 
     # Multiply both matrices
-    m = strassens(m1, m2)
+    if s:
+        m = strassens(m1, m2)
+    else:
+        m = matMult(m1, m2)
     
     for i in range(d):
         print(int(m[i, i]))
             
-
 # part 3 moved to part3.py

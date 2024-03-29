@@ -3,11 +3,12 @@
 import matplotlib.pyplot as plt
 from scipy.stats import mode
 import numpy as np
+import cross_over
 import strassen
 import time
 import sys
 
-def experiements():
+def findnOpt():
     bestN = []
     Ds = [2, 4, 8, 16, 32, 64, 128, 256]
     nOpts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 32, 50, 100, 150]
@@ -36,4 +37,35 @@ def experiements():
     print(f"Mode: {mode(bestN)}")
     print(f"Median: {bestN[(len(bestN) - 1) // 2]}")
     
-experiements()
+
+
+def findCross():
+    Ds = [2, 4, 8, 16, 32]
+
+    sTimes = []
+    nTimes = []
+    for i, d in enumerate(Ds):
+        
+        sys.argv = ["strassen.py", "0", f"{d}", f"test{i}.txt"]
+        
+        start = time.time()
+        cross_over.main()
+        end = time.time()
+        
+        sTimes.append(end - start)
+        
+        start = time.time()
+        cross_over.main(False)
+        end = time.time()
+        
+        nTimes.append(end - start)
+        
+    plt.plot(Ds, sTimes, label="Strassen's algorithm")
+    plt.plot(Ds, nTimes, label="Traditional Matrix Mult")
+    plt.xlabel("Dimension of Matrix")
+    plt.ylabel("Time to Exevute Multiplication")
+    plt.title("Strassen vs Traditional Matrix Multiplication")
+    plt.legend()
+    plt.show()
+    
+findCross()

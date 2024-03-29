@@ -54,8 +54,28 @@ When we plug this function into Desmos, we find that the value of $n$ that satis
 
 Thus, our final result is that for the even case, the turning point is at $n=15$, and for the odd case, the turning point is at approximately $n=37$.
 
-\section{Section 2: Experimental Analysis}
+\pagebreak
 
+\section{Section 2: Experimental Analysis}
+After implementing the Strassen's algorithm, in a way that works for all n values, we can use a the time python package to empirically figure out the best n value or a range of optimal n values. In this case, I ran Strassen's algorithm on square matrices with the following dimensions [2, 4, 8, 16, 32, 64, 128, 256]. For each matrix I ran Strassen's algorithm with the following base values [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 32, 50, 100, 150] and got the following graph.
+
+\includegraphics[width=\textwidth]{graph.png} \\
+
+As we can see in the graph, the optimal size of the base case value seems to be in the range of 5 to around 15. The time values within this range tend to be very close together so any one of these values could be the optimal size to stop the base case. With that being said, according to the test that I ran, a base case n value of n = 9 seemed to get the best times across the board.
+
+\includegraphics[width=\textwidth]{best_n.png} \\
+
+In summary, according to my trials, any value from between 5 - 15 should give the optimal base case value for Strassen's algorithm, but 9 is the best according to my testing. Now, to find the cross-over point. I will run the algorithm twice, once using the traditional base case of a 1x1 matrix and another using the optimal base case found in the first part. Below are two graphs, one is zoomed in for lower dimensional values and the second one is zoomed out.
+
+\includegraphics[width=\textwidth]{graph2.png}
+\includegraphics[width=\textwidth]{graph3.png} \\
+
+In this case, we see the two methods are pretty much equal for smaller values, this makes sense seeing as this is Strassen's with a base case of 9. Thus, for values less than of equal to 9 dimensions, the two are essentially idential algorithms. With this optimized Strassen's we see that the cross over point happens at around n = 13. However, with the optimized Strassen's is pretty much always better than the traditional method of conducting matrix multiplication. Now, let's compare it to the Strassen's matrix multiplication with the normal base case of a 1x1 matrix.
+
+\includegraphics[width=\textwidth]{graph4.png}
+\includegraphics[width=\textwidth]{graph5.png} \\
+
+This data matches my results from the first part of the experimental results. It seems that again, the two are very close for smaller dimensional matrices, but at n = 9, Strassen's seems to overtake the traditional matrix multiplication in terms of speed. This corroborates with all the data we've seen so far and makes sense. One way to optimize both algorithms would be to rely more heavily on NumPy's built in matrix multiplication algorithms such as the dot product. Doing this could lead to the cross over point being much higher. This is because python packages are typically written in C, which is a much faster language than python, so these packages are usually for faster than implementing the same algorithm in python. This could explain why our cross over point is relatively small.
 
 \section{Section 3: Triangle in Random Graphs}
 
