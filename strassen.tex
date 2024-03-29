@@ -78,5 +78,7 @@ In this case, we see the two methods are pretty much equal for smaller values, t
 This data matches my results from the first part of the experimental results. It seems that again, the two are very close for smaller dimensional matrices, but at n = 9, Strassen's seems to overtake the traditional matrix multiplication in terms of speed. This corroborates with all the data we've seen so far and makes sense. One way to optimize both algorithms would be to rely more heavily on NumPy's built in matrix multiplication algorithms such as the dot product. Doing this could lead to the cross over point being much higher. This is because python packages are typically written in C, which is a much faster language than python, so these packages are usually for faster than implementing the same algorithm in python. This could explain why our cross over point is relatively small.
 
 \section{Section 3: Triangle in Random Graphs}
+\includegraphics[width=\textwidth]{Triangles.png}
+This is the graph we brought comparing our expected values to our calculated values. We see that the number of triangles calculated is much lower than the expected number.
 
 \end{document}
