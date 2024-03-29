@@ -128,6 +128,7 @@ def main():
     
     for i in range(d):
         print(int(m[i, i]))
-            
+
+main()
 
 # part 3 moved to part3.py
