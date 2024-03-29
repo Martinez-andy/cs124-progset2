@@ -8,7 +8,7 @@ import sys
 
 
 # Optimal n values
-nOpt = 1
+nOpt = 9
 
 # Adds row and column of zeros, needed for odd matrices
 def addZeros(m):
