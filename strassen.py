@@ -8,7 +8,7 @@ import sys
 
 
 # Optimal n values
-nOpt = 37
+nOpt = 9
 
 
 # Adds row and column of zeros, needed for odd matrices
@@ -27,15 +27,16 @@ def addZeros(m):
 # Normal matrix multiplication
 def matMult(m1, m2):
     # Initialize result matrix with appropriate dimensions
-    result = np.zeros((m1.shape[0], m2.shape[1]))
+    n = m1.shape[0]
+    result = np.zeros((n, n))
 
     # Iterate over rows of the first matrix
-    for i in range(m1.shape[0]):
+    for i in range(n):
         # Iterate over columns of the second matrix
-        for j in range(m2.shape[1]):
-            # Compute the dot product of the ith row of m1 and the jth column of m2
-            result[i, j] = np.sum(m1[i, :] * m2[:, j])
-
+        for j in range(n):
+            for k in range(n):
+                result[i, j] += m1[i, k] * m2[k, j]
+                
     return result
 
 
@@ -63,6 +64,8 @@ def makeQuads(m):
 def strassens(m1, m2):
     n = len(m1)
     
+    nOpt = nOpt if sys.argv[1] == 0 else int(sys.argv[1])
+    
     # Once we reach base case, do normal matrix mult
     if n <= nOpt:
         return matMult(m1, m2)
@@ -80,7 +83,7 @@ def strassens(m1, m2):
     E, F, G, H = makeQuads(m2)
     
     # Calculate p values from lecture slides
-    p1 = strassens(A, (F-H))
+    p1 = strassens(A, (F - H))
     p2 = strassens((A + B), H)
     p3 = strassens((C + D), E)
     p4 = strassens(D, (G - E))
@@ -129,6 +132,5 @@ def main():
     for i in range(d):
         print(int(m[i, i]))
             
-
-
+main()
 # part 3 moved to part3.py
